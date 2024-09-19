@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metastasis Cancer Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navbar h2 {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            float: right;
+            margin-right: 20px;
+        }
+
+        .navbar ul li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Tab Styles */
+        .tabs {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .tab-header {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-header button {
+            background-color: #f8f8f8;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            width: 50%;
+            font-size: 18px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .tab-header button.active {
+            background-color: #fff;
+            border-bottom: 3px solid #007bff;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* About Tab Styles */
+        .about-section {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .about-section h2 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .about-section ul {
+            padding-left: 20px;
+        }
+
+        .about-section ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Form and Image Upload Styles */
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- Include TIFF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiff-js/2.0.1/tiff.min.js"></script>
+</head>
+<body>
+    <header class="navbar">
+        <h2>HealthCare AI</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Metastasis Cancer Detection</h1>
+
+        <div class="tabs">
+            <!-- Tab Headers -->
+            <div class="tab-header">
+                <button class="tab-link active" onclick="openTab(event, 'about')">About Disease</button>
+                <button class="tab-link" onclick="openTab(event, 'upload')">Prediction</button>
+            </div>
+
+            <!-- Tab Content 1: About the Disease -->
+            <div id="about" class="tab-content active">
+                <div class="about-section">
+                    <h2>What is Metastasis Cancer?</h2>
+                    <p>Metastasis refers to the spread of cancer from the primary site (where it started) to other parts of the body. It occurs when cancer cells break away from the original tumor, travel through the bloodstream or lymphatic system, and form new tumors in other organs.</p>
+
+                    <h3>Common Sites of Metastasis:</h3>
+                    <ul>
+                        <li>Bone</li>
+                        <li>Liver</li>
+                        <li>Lungs</li>
+                        <li>Brain</li>
+                    </ul>
+
+                    <h3>Symptoms of Metastatic Cancer:</h3>
+                    <ul>
+                        <li>Bone pain or fractures (if cancer has spread to bones)</li>
+                        <li>Jaundice or abdominal swelling (if cancer has spread to the liver)</li>
+                        <li>Shortness of breath (if cancer has spread to the lungs)</li>
+                        <li>Headaches or seizures (if cancer has spread to the brain)</li>
+                    </ul>
+
+                    <h3>Treatment and Management:</h3>
+                    <ul>
+                        <li>Chemotherapy, radiation, or surgery to manage symptoms</li>
+                        <li>Targeted therapy based on the type of cancer</li>
+                        <li>Immunotherapy to help the body fight cancer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Upload and Predict -->
+            <div id="upload" class="tab-content">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" name="image" accept="image/*" required onchange="handleFile(event)">
+                    <button type="submit">Upload and Predict</button>
+                </form>
+
+                {% if result %}
+                <div class="result">
+                    <h2>Prediction Result:</h2>
+                    <p>{{ result }}</p>
+                    <h3>Uploaded Image:</h3>
+                    <img id="uploaded-image" src="{{ url_for('uploaded_file', filename=image_url) }}" alt="Uploaded Image" class="preview-img">
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load the correct tab on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const activeTab = localStorage.getItem("activeTab") || "about";
+            openTab(null, activeTab);
+        });
+
+        function openTab(event, tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tab links
+            const tabLinks = document.querySelectorAll('.tab-link');
+            tabLinks.forEach(link => link.classList.remove('active'));
+
+            // Show the selected tab content and add active class to the selected tab link
+            document.getElementById(tabName).classList.add('active');
+
+            if (event) {
+                event.currentTarget.classList.add('active');
+                // Store the active tab in localStorage
+                localStorage.setItem("activeTab", tabName);
+            } else {
+                // Activate the correct tab header if loading from localStorage
+                document.querySelector(`[onclick="openTab(event, '${tabName}')"]`).classList.add('active');
+            }
+        }
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function () {
+                if (file.type === 'image/tiff' || file.type === 'image/x-tiff') {
+                    // Convert TIFF to PNG
+                    TIFF.decode(reader.result).then(function (image) {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = image.width;
+                        canvas.height = image.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(image, 0, 0);
+                        const pngDataUrl = canvas.toDataURL('image/png');
+                        
+                        // Replace image source with PNG data URL
+                        const imgElement = document.getElementById('uploaded-image');
+                        imgElement.src = pngDataUrl;
+                    });
+                } else {
+                    // For non-TIFF files, display as usual
+                    const imgElement = document.getElementById('uploaded-image');
+                    imgElement.src = reader.result;
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+</body>
+</html>

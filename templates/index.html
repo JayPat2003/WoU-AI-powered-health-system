@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <h2>HealthCare AI</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <h1>WOU AI-powered HealthCare System</h1>
+        <p>Imagery-Based Diagnosis and Prognosis Tools</p>
+    </div>
+
+    <div class="container">
+        <section class="service-section">
+            <div class="service-card">
+                <h2>Diabetic Retinopathy Detection</h2>
+                <p>Detect early signs of diabetic retinopathy with our AI-powered tool.</p>
+                <a href="{{ url_for('diabetic_retinopathy') }}" class="service-button">Explore</a>
+            </div>
+            <div class="service-card">
+                <h2>Kidney Stone Detection</h2>
+                <p>Identify kidney stones with precision using our AI diagnostic model.</p>
+                <a href="{{ url_for('kidney_stone') }}" class="service-button">Explore</a>
+            </div>
+            <div class="service-card">
+                <h2>Cancer Detection</h2>
+                <p>Get AI-assisted detection of cancerous cells for early diagnosis.</p>
+                <a href="{{ url_for('cancer_detection') }}" class="service-button">Explore</a>
+            </div>
+            <div class="service-card">
+                <h2>Liver Fibrosis Detection</h2>
+                <p>Get AI-assisted detection of liver disease for early diagnosis.</p>
+                <a href="{{ url_for('liver_disease') }}" class="service-button">Explore</a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

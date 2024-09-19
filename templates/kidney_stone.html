@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kidney Stone Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: #fff;
+        }
+
+        .navbar nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar nav ul li {
+            margin-left: 20px;
+        }
+
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .navbar nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding-top: 80px; /* Adjust padding to account for fixed header */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .tabs {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .tab-header {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-header button {
+            background-color: #f8f8f8;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            width: 50%;
+            font-size: 18px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .tab-header button.active {
+            background-color: #fff;
+            border-bottom: 3px solid #007bff;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .home-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .home-link a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .home-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .about-section h2 {
+            color: #007bff;
+        }
+
+        .about-section ul {
+            padding-left: 20px;
+        }
+
+        .about-section ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar">
+            <h2>HealthCare AI</h2>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Kidney Stone Detection</h1>
+
+        <div class="tabs">
+            <!-- Tab Headers -->
+            <div class="tab-header">
+                <button class="tab-link active" onclick="openTab(event, 'about')">About Kidney Stones</button>
+                <button class="tab-link" onclick="openTab(event, 'upload')">Prediction</button>
+            </div>
+
+            <!-- Tab Content 1: About the Disease -->
+            <div id="about" class="tab-content active">
+                <div class="about-section">
+                    <h2>What are Kidney Stones?</h2>
+                    <p>Kidney stones are hard deposits made of minerals and salts that form inside your kidneys. They can affect any part of your urinary tract — from your kidneys to your bladder.</p>
+
+                    <h3>Common Causes of Kidney Stones:</h3>
+                    <ul>
+                        <li>Lack of water intake</li>
+                        <li>Diet high in salt, sugar, or protein</li>
+                        <li>Obesity</li>
+                        <li>Medical conditions like hyperparathyroidism</li>
+                    </ul>
+
+                    <h3>Symptoms of Kidney Stones:</h3>
+                    <ul>
+                        <li>Severe pain in the back or abdomen</li>
+                        <li>Painful urination</li>
+                        <li>Cloudy or foul-smelling urine</li>
+                        <li>Blood in urine</li>
+                    </ul>
+
+                    <h3>Prevention and Treatment:</h3>
+                    <ul>
+                        <li>Staying hydrated by drinking plenty of water</li>
+                        <li>Reducing salt and protein in your diet</li>
+                        <li>Medications to manage pain or help pass the stone</li>
+                        <li>Surgery or other medical interventions in severe cases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Upload and Predict -->
+            <div id="upload" class="tab-content">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" name="image" accept="image/*" required>
+                    <button type="submit">Upload and Predict</button>
+                </form>
+
+                {% if image_url %}
+                    <div>
+                        <h2>Detection Result</h2>
+                        <img src="{{ url_for('static', filename='uploads/' + image_url) }}" alt="Processed Image" class="preview-img">
+                    </div>
+                {% endif %}
+
+                <div class="home-link">
+                    <a href="{{ url_for('index') }}">Go to Home Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load the correct tab on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const activeTab = localStorage.getItem("activeTab") || "about";
+            openTab(null, activeTab);
+        });
+
+        function openTab(event, tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tab links
+            const tabLinks = document.querySelectorAll('.tab-link');
+            tabLinks.forEach(link => link.classList.remove('active'));
+
+            // Show the selected tab content and add active class to the selected tab link
+            document.getElementById(tabName).classList.add('active');
+
+            if (event) {
+                event.currentTarget.classList.add('active');
+                // Store the active tab in localStorage
+                localStorage.setItem("activeTab", tabName);
+            } else {
+                // Activate the correct tab header if loading from localStorage
+                document.querySelector(`[onclick="openTab(event, '${tabName}')"]`).classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Fibrosis Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('{{ url_for('static', filename='img1.webp') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+            color: #fff;
+        }
+
+        .navbar nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar nav ul li {
+            margin-left: 20px;
+        }
+
+        .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .navbar nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 80px 20px 20px; /* Adjust padding to account for fixed header */
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .tabs {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .tab-header {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-header button {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            width: 50%;
+            font-size: 18px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .tab-header button.active {
+            background-color: white;
+            border-bottom: 3px solid #007bff;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border-radius: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .about-section h2 {
+            color: #007bff;
+        }
+
+        .about-section ul {
+            padding-left: 20px;
+        }
+
+        .about-section ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar">
+            <h2>HealthCare AI</h2>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Liver Fibrosis Detection</h1>
+
+        <div class="tabs">
+            <!-- Tab Headers -->
+            <div class="tab-header">
+                <button class="tab-link active" onclick="openTab(event, 'about')">About Liver Fibrosis</button>
+                <button class="tab-link" onclick="openTab(event, 'upload')">Prediction</button>
+            </div>
+
+            <!-- Tab Content 1: About the Disease -->
+            <div id="about" class="tab-content active">
+                <div class="about-section">
+                    <h2>What is Liver Fibrosis?</h2>
+                    <p>Liver fibrosis is the excessive accumulation of extracellular matrix proteins including collagen that occurs in most types of chronic liver diseases. It is the result of the body's attempt to repair itself following chronic liver damage.</p>
+
+                    <h3>Causes of Liver Fibrosis:</h3>
+                    <ul>
+                        <li>Chronic Hepatitis B or C infection</li>
+                        <li>Alcoholic liver disease</li>
+                        <li>Non-alcoholic fatty liver disease (NAFLD)</li>
+                        <li>Biliary diseases</li>
+                        <li>Inherited liver conditions</li>
+                    </ul>
+
+                    <h3>Symptoms of Liver Fibrosis:</h3>
+                    <ul>
+                        <li>Fatigue and weakness</li>
+                        <li>Loss of appetite</li>
+                        <li>Jaundice (yellowing of skin and eyes)</li>
+                        <li>Itching</li>
+                        <li>Easy bruising or bleeding</li>
+                    </ul>
+
+                    <h3>Prevention and Management:</h3>
+                    <ul>
+                        <li>Avoiding alcohol</li>
+                        <li>Healthy diet and weight management</li>
+                        <li>Medication to manage underlying conditions</li>
+                        <li>Regular medical monitoring and imaging</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Upload and Predict -->
+            <div id="upload" class="tab-content">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" name="file" required>
+                    <input type="submit" value="Upload and Predict">
+                </form>
+
+                {% if filename %}
+                <div>
+                    <h2>Uploaded Image:</h2>
+                    <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image">
+                </div>
+                <div class="result">
+                    <h2>Prediction Result:</h2>
+                    <p>{{ result }}</p>
+                </div>
+                <a href="{{ url_for('liver_disease') }}" class="back-link">Upload another image</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load the correct tab on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const activeTab = localStorage.getItem("activeTab") || "about";
+            openTab(null, activeTab);
+        });
+
+        function openTab(event, tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tab links
+            const tabLinks = document.querySelectorAll('.tab-link');
+            tabLinks.forEach(link => link.classList.remove('active'));
+
+            // Show the selected tab content and add active class to the selected tab link
+            document.getElementById(tabName).classList.add('active');
+
+            if (event) {
+                event.currentTarget.classList.add('active');
+                // Store the active tab in localStorage
+                localStorage.setItem("activeTab", tabName);
+            } else {
+                // Activate the correct tab header if loading from localStorage
+                document.querySelector(`[onclick="openTab(event, '${tabName}')"]`).classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
