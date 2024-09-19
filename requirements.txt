@@ -1,0 +1,12 @@
+Flask
+pytorch
+torchvision
+torchaudio
+Pillow
+numpy
+tensorflow
+keras
+ultralytics
+Werkzeug
+opencv-python
+pandas
