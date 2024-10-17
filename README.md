@@ -40,8 +40,7 @@ Before running the application, ensure that you have the following:
    pip install -r requirements.txt
 
 
-
-## Usage (explaination with relevant screenshots)
+## Usage (explanation with relevant screenshots)
 
 1. **Navigate to the Web Interface**: Run the application and go to `http://127.0.0.1:5000/`.
 2. **Select a Model**: Choose the desired model from the interface.
