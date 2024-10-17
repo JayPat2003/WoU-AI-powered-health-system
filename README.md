@@ -41,18 +41,19 @@ Before running the application, ensure that you have the following:
    pip install -r requirements.txt
 
 
-## Usage (explanation with relevant screenshots)
+## Usage (with an example)
 
 1. **Navigate to the Web Interface**: Run the application and go to `http://127.0.0.1:5000/`.
 2. **Select a Model**: Choose the desired model from the interface.
 3. **Upload an Image**: Upload an image in a supported format (e.g., `.jpg`, `.png`).
 4. **Get Prediction**: Click the "Submit" button to obtain predictions from the model. The result will include the processed image with annotations (if applicable) and the predicted class or probability.
+![Example](screenshots/example.jpg)
 
 ## Model Details
 
 - **Kidney Stone Detection**: 
   - **Model Type**: Object Detection using YOLOv10.
-  - **Dataset**: [Kidnet Stone Kaggle Dataset](https://www.kaggle.com/datasets/safurahajiheidari/kidney-stone-images/data)
+  - **Dataset**: [Kidney Stone Kaggle Dataset](https://www.kaggle.com/datasets/safurahajiheidari/kidney-stone-images/data)
   - **Purpose**: Identifies and localizes kidney stones in medical imaging, providing bounding boxes around detected stones. 
 
 - **Diabetic Retinopathy Detection**: 
