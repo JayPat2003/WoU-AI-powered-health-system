@@ -50,32 +50,24 @@ Before running the application, ensure that you have the following:
 ## Model Details
 
 - **Kidney Stone Detection**: 
-  - **Model Type**: Object Detection using YOLOv8.
-  - **Dataset**: Trained on a dataset of kidney stone images. 
-  - **Accuracy**: 
-  - **Purpose**: Identifies and localizes kidney stones in medical imaging, providing bounding boxes around detected stones.
-  - **Additional Information**: 
+  - **Model Type**: Object Detection using YOLOv10.
+  - **Dataset**: [Kidnet Stone Kaggle Dataset](https://www.kaggle.com/datasets/safurahajiheidari/kidney-stone-images/data)
+  - **Purpose**: Identifies and localizes kidney stones in medical imaging, providing bounding boxes around detected stones. 
 
 - **Diabetic Retinopathy Detection**: 
   - **Model Type**: Classification using a Convolutional Neural Network (CNN).
-  - **Dataset**: Trained on a dataset of retinal images with various stages of diabetic retinopathy.
-  - **Accuracy**: 
-  - **Purpose**: Classifies retinal images into different stages of diabetic retinopathy, aiding early detection and management.
-  - **Additional Information**: 
+  - **Dataset**: Trained on a dataset of retinal images with various stages of diabetic retinopathy. 
+  - **Purpose**: Classifies retinal images into different stages of diabetic retinopathy, aiding early detection and management. 
 
 - **Liver Fibrosis Histopathology Detection**: 
   - **Model Type**: Deep Learning-based Classification.
   - **Dataset**: Trained on histopathological liver tissue slides.
-  - **Accuracy**: 
   - **Purpose**: Analyzes liver tissue slides to classify the level of fibrosis, supporting liver disease diagnosis.
-  - **Additional Information**: 
 
 - **Histopathology Metastasis Lymph Node Cancer Detection**: 
   - **Model Type**: Deep Learning-based Detection.
   - **Dataset**: Trained on histopathological slides of lymph node tissues.
-  - **Accuracy**: 
   - **Purpose**: Detects metastasis in lymph node tissue slides, assisting in the identification of cancer spread.
-  - **Additional Information**: 
 
 
 ## Contributing
