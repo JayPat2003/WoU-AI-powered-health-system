@@ -6,6 +6,7 @@ This repository contains a Flask-based web application that integrates four deep
 - **Liver Fibrosis Histopathology Detection**
 - **Histopathology Metastasis Lymph Node Cancer Detection**
 
+![Website Interface](screenshots/1.jpg)
 
 ## Overview
 
